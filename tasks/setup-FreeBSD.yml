@@ -1,0 +1,12 @@
+---
+- name: Update pkg cache
+  shell: pkg update -f
+  register: pkgng_packages_updated
+  when: pkgng_packages_updated is not defined
+
+- name: Ensure PHP packages are installed.
+  pkgng:
+    name: "{{ item }}"
+    state: "{{ php_packages_state }}"
+  with_items: "{{ php_packages }}"
+  notify: restart webserver

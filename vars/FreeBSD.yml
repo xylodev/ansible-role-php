@@ -1,0 +1,39 @@
+---
+__php_packages:
+  - php70
+  - php70-curl
+  - php70-dom
+  - php70-filter
+  - php70-gd
+  - php70-hash
+  - php70-imap
+  - php70-intl
+  - php70-json
+  - php70-mbstring
+  - php70-opcache
+  - php70-openssl
+  - php70-pdo
+  - php70-pdo_mysql
+  - php70-phar
+  - php70-sqlite3
+  - php70-xml
+__php_webserver_daemon: "apache24"
+
+__php_conf_paths:
+  - /usr/local/etc
+
+__php_extension_conf_paths:
+  - /usr/local/etc/php
+
+__php_apc_conf_filename: ext-50-apc.ini
+__php_opcache_conf_filename: ext-10-opcache.ini
+__php_fpm_daemon: php-fpm
+__php_fpm_conf_path: "/usr/local/etc/php-fpm.d"
+__php_fpm_pool_conf_path: "{{ __php_fpm_conf_path }}/www.conf"
+
+__php_fpm_pool_user: www
+__php_fpm_pool_group: www
+
+php_packages_state: present
+php_root_group: wheel
+php_enable_apc: false
