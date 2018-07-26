@@ -16,18 +16,6 @@
     - files
   notify: restart webserver
 
-- name: Ensure OpCache config file is present.
-  template:
-    src: opcache.ini.j2
-    dest: "{{ item }}/{{ php_opcache_conf_filename }}"
-    owner: root
-    group: "{{ php_root_group }}"
-    force: yes
-    mode: 0644
-  with_items: "{{ php_extension_conf_paths }}"
-  when: php_opcache_enable
-  notify: restart webserver
-
 - name: Remove OpCache config file if OpCache is disabled.
   file:
     path: "{{ item }}/{{ php_opcache_conf_filename }}"
